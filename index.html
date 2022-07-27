@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0"/>
+    <meta property="og:image" content="intro.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&display=block" rel="stylesheet">
+    <style type="text/css">
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        body {
+            background: #141518;
+        }
+
+        button, .clickable {
+            cursor: pointer;
+        }
+
+        button:active {
+            padding: 0;
+        }
+
+        #pseudo-viewport {
+            display: flex;
+            flex-flow: column;
+            height: 100%;
+            margin: auto;
+            max-width: 100vh;
+            position: relative;
+            width: 100%;
+        }
+        #container {
+            border: 1px hidden rgba(0, 0, 0, 0);
+            display: flex;
+            flex-wrap: nowrap;
+            height: 100%;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            -ms-scroll-snap-type: mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        #container::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+
+        section {
+            flex: 0 0 auto;
+            height: 100%;
+            position: relative;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            width: 100vw;
+            max-width: 100vh;
+        }
+
+        .overlay {
+            display: flex;
+            flex-flow: column;
+            height: 100%;
+            left: 0;
+            padding: 0 40px;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .animate {
+            opacity: 0;
+        }
+
+        .animated {
+            animation: float 1s forwards ease-out;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(50px);
+                opacity: .2;
+            }
+            to {
+                transform: none;
+                opacity: 1;
+            }
+        }
+
+        .name {
+            border-top: 3px solid;
+            letter-spacing: 0.1em;
+            line-height: 2em;
+            padding: 10px 0;
+            text-align: right;
+            text-shadow: black 1px 1px;
+            width: fit-content;
+        }
+
+        .name h2 {
+            display: inline;
+        }
+
+        .name span {
+            font-size: 18px;
+            margin: 0 5px;
+        }
+
+        .about {
+            padding: 30px 10px;
+            line-height: 2.5em;
+            letter-spacing: 0.1em;
+        }
+
+        @media screen and (max-width: 500px) {
+            .about{
+                font-size: 3.5vw;
+            }
+        }
+
+        @media screen and (max-height: 500px) {
+            .about{
+                font-size: 3vh;
+                padding: 3vh 10px;
+            }
+            .name {
+                border-top: 1px solid;
+                letter-spacing: 1px;
+                line-height: 20px;
+                padding: 5px 0;
+            }
+            .name span {
+                margin: 0;
+            }
+            .name .text {
+                font-size: 3vh;
+            }
+            .name h2 {
+                font-size: 4vh;
+            }
+        }
+
+        h1.divider {
+            align-items: center;
+            color: rgba(255, 255, 255, 0.9);
+            display: flex;
+        }
+
+        h1.divider span {
+            content: "";
+            flex: 1 1 auto;
+            border-top: 1px solid;
+            margin: 0 25px;
+        }
+
+        h1, h2, h3, h4, .text {
+            font-family: 'Nanum Myeongjo', serif;
+        }
+
+        #intro {
+            color: #204051;
+            background-image: url("intro.jpg");
+            background-size: cover;
+            background-position: right;
+        }
+
+        #intro .overlay {
+            background: linear-gradient(50deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 35%, rgba(255, 255, 255, 0.2) 100%);
+            padding: 0 40px 0 20px;
+        }
+
+        #intro .title {
+            margin: 10px;
+        }
+
+        #intro h3, #intro h4 {
+            margin: 10px 0;
+        }
+
+        #intro .text {
+            color: #3b6978;
+            letter-spacing: 0.05em;
+            line-height: 1.7em;
+            border-left: 3px solid;
+            padding-left: 10px;
+            margin: auto 0 10px 0;
+            text-shadow: black 0.01em 0.01em;
+        }
+
+        #groom {
+            background-image: url("groom2.jpg");
+            background-size: cover;
+            background-position: right;
+        }
+
+        #groom .overlay {
+            align-items: flex-start;
+            background: linear-gradient(90deg, rgba(20, 21, 24, .6) 0%, rgba(20, 21, 24, .4) 50%);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        #groom .name {
+            margin: auto 0 10px 10px;
+        }
+
+        #bride {
+            background-image: url("bride2.jpg");
+            background-size: cover;
+            background-position: left;
+        }
+
+        #bride .overlay {
+            align-items: flex-end;
+            background: linear-gradient(110deg, rgba(20, 21, 24, .4) 50%, rgba(20, 21, 24, 0.6) 100%);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        #bride .about {
+            text-align: right;
+        }
+
+        #bride .name {
+            padding-left: 15px;
+            margin: auto 10px 10px 0;
+        }
+
+        #album {
+            display: flex;
+            flex-flow: column;
+        }
+
+        #album #photo-list {
+            list-style: none;
+            margin: 0 40px;
+            overflow-y: scroll;
+            padding: 0;
+            pointer-events: auto;
+            scrollbar-width: thin;
+        }
+
+        #album .photo {
+            box-sizing: border-box;
+            padding: 10px;
+            width: 100%;
+        }
+
+        #lightbox {
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            visibility: hidden;
+            top: 0;
+            width: 100%;
+            z-index: 2;
+        }
+
+        #lightbox-close {
+            background: none;
+            border: 0;
+            height: 60px;
+            margin: 10px;
+            opacity: .59;
+            outline: none;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60px;
+        }
+
+        #lightbox-close svg {
+            fill: white;
+            stroke: black;
+        }
+
+        #photo-index {
+            background: rgba(0, 0, 0, .36);
+            border-radius: 0.2em;
+            color: white;
+            left: 50%;
+            padding: 0.2em 0.4em;
+            position: absolute;
+            top: 25px;
+            transform: translateX(-50%);
+        }
+
+        #photo-view {
+            margin: 0 auto;
+            object-fit: contain;
+            transform-origin: center;
+            width: 100%;
+        }
+
+        #loading {
+            animation: spin 1s ease-in-out infinite;
+            border: 3px solid rgba(255, 255, 255, .3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            height: 50px;
+            left: 50%;
+            position: absolute;
+            top: 50%;
+            width: 50px;
+            z-index: -1;
+        }
+
+        @keyframes spin {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        #directions {
+            background: #84a9ac;
+            color: rgba(255, 255, 255, 0.9);
+            overflow-y: scroll;
+            scrollbar-width: thin;
+        }
+
+        #map {
+            height: 50vw;
+            max-height: 50vh;
+            margin: 5px 50px;
+        }
+
+        #directions .text {
+            font-size: 15px;
+            text-align: center;
+            margin: 15px 50px;
+        }
+
+        #directions .text a {
+            color: #cae8d5;
+        }
+
+        #directions .address {
+            font-size: 2.8vw;
+            text-align: center;
+        }
+
+        @media screen and (min-width: 500px) {
+            #directions .address {
+                font-size: 14px;
+            }
+        }
+
+        #directions .address > * {
+            display: inline-block;
+            margin: 5px;
+        }
+
+        #directions .fyi {
+            font-size: 0.8em;
+            margin-bottom: 40px;
+        }
+
+        #directions .applink {
+            align-content: center;
+            border: 1px dashed;
+            color: #3b6978;
+            display: flex;
+            height: 40px;
+            justify-items: flex-start;
+            margin: 20px 50px;
+            padding: 10px;
+            text-decoration: none;
+        }
+
+        #directions .applink .icon {
+            border-radius: 8px;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        #directions .applink .text {
+            font-size: 15px;
+            margin: auto;
+        }
+
+        nav {
+            background: #204051;
+            border-top: 1px solid #3b6978;
+        }
+
+        .nav-current {
+            fill: #cae8d5;
+            background: #3b6978;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0 auto;
+            padding: 0;
+            width: 300px;
+        }
+
+        nav li {
+            display: block;
+            fill: #84a9ac;
+            padding: 15px 15px 10px;
+            width: 2em;
+        }
+
+        nav .icon {
+            position: relative;
+        }
+
+        nav img {
+            height: auto;
+            width: 100%;
+        }
+
+        nav svg {
+            left: 0;
+            position: absolute;
+            top: 0;
+        }
+
+
+        .arrow {
+            background: none;
+            border: 0;
+            height: 40px;
+            outline: none;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            z-index: 1;
+        }
+
+        #arrow-right {
+            right: 0;
+        }
+
+        #arrow-left {
+            left: 0;
+            transform: translateY(-50%) scaleX(-1);
+        }
+
+        @keyframes blink {
+            0% {
+                fill: #000;
+            }
+            25%, 50%{
+                fill: #fff;
+            }
+            75%, 100% {
+                fill: #000;
+            }
+        }
+
+        .chevron {
+            animation: blink 1.4s infinite ease-in-out;
+            margin: -2px;
+        }
+
+        .chevron svg {
+            width: 12px;
+        }
+
+        .chevron.delayed {
+            animation: blink 1.4s 0.2s infinite ease-in-out;
+        }
+
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+            /* disable animation in IE */
+            .chevron, .chevron.delayed {
+                animation: none;
+                fill: #fff;
+                stroke: #000;
+                stroke-width: 25;
+            }
+        }
+    </style>
+    <title>오승규 | 김주연</title>
+</head>
+<body>
+<div id="pseudo-viewport">
+    <div id="container">
+        <section id="intro">
+            <div class="overlay">
+                <div class="title animate">
+                    <h1>오승규 | 김주연</h1>
+                    <h3>라움 4층 체임버홀</h3>
+                    <h4>2020년 7월 4일 낮 12시</h4>
+                </div>
+                <div class="text animate">저희 두 사람이<br>사랑과 믿음으로<br>한 가정을 이루게 되었습니다.<br>서로 배려하며 사이좋게<br>함께 나아가는 삶을 꾸리겠습니다.</div>
+            </div>
+        </section>
+        <section id="groom">
+            <div class="overlay">
+                <div class="text about animate">
+                    그의 끄덕임으로<br>그의 미소로<br>나의 일상은 활기를 찾고.<br>하루하루가 행복해 집니다.<br>나의 순간순간을<br>기억해주는<br>바로<br>이 사람
+                </div>
+                <div class="name animate">
+                    <span class="text">신랑</span>
+                    <h2>오승규</h2>
+                    <div class="text">오수열·조영희의 장남</div>
+                </div>
+            </div>
+        </section>
+        <section id="bride">
+            <div class="overlay">
+                <div class="about text animate">
+                    장난스런 말투 속에<br>지혜를 간직한 사람<br>늘 밝고 이성적이며<br>건강한 몸과 마음으로<br>나의 부족한 점을 감싸주는<br>믿고 의지할 수 있는 반려<br>바로<br>이 사람
+                </div>
+                <div class="name animate">
+                    <span class="text">신부</span>
+                    <h2>김주연</h2>
+                    <div class="text">김영곤·박미숙의 장녀</div>
+                </div>
+            </div>
+        </section>
+        <section id="album">
+            <h1 class="divider"><span></span>Gallery<span></span></h1>
+            <ul id="photo-list">
+                <li class="clickable animate" data-hr="photo/highres/1.jpg"><img class="photo" src="photo/1.jpg"></li>
+                <li class="clickable animate" data-hr="photo/highres/2.jpg"><img class="photo" src="photo/2.jpg"></li>
+                <li class="clickable animate" data-hr="photo/highres/3.jpg"><img class="photo" src="photo/3.jpg"></li>
+                <li class="clickable animate" data-hr="photo/highres/4.jpg"><img class="photo" src="photo/4.jpg"></li>
+                <li class="clickable animate" data-hr="photo/highres/5.jpg"><img class="photo" src="photo/5.jpg"></li>
+                <li class="clickable animate" data-hr="photo/highres/6.jpg"><img class="photo" src="photo/6.jpg"></li>
+                <li class="clickable animate" data-hr="photo/highres/7.jpg"><img class="photo" src="photo/7.jpg"></li>
+                <li class="clickable animate" data-hr="photo/highres/8.jpg"><img class="photo" src="photo/8.jpg"></li>
+                <li class="clickable animate" data-hr="photo/highres/9.jpg"><img class="photo" src="photo/9.jpg"></li>
+                <li class="clickable animate" data-hr="photo/highres/10.jpg"><img class="photo" src="photo/10.jpg"></li>
+            </ul>
+        </section>
+        <section id="directions">
+            <h1 class="divider"><span></span>오시는 길<span></span></h1>
+            <div id="map"></div>
+            <div class="text address">
+                <span>서울 강남구 언주로 564(역삼동 680-1)</span><a href="tel:025383366">Tel. 02-538-3366</a>
+            </div>
+            <div class="text">라움<br>4층 체임버홀</div>
+            <div class="text">&lt;예식장 내 주차 가능&gt;<br>&lt;셔틀버스 운행: 선릉역 5번출구&gt;</div>
+            <div class="text fyi">화환은 정중히 사양합니다.</div>
+            <a class="applink" href="https://map.kakao.com/link/map/더라움,37.508453,127.039990">
+                <img class="icon" src="kakao.png">
+                <span class="text">카카오맵에서 보기</span>
+            </a>
+            <a class="applink" href="http://naver.me/G8aevFji">
+                <img class="icon" src="naver.png">
+                <span class="text">네이버지도에서 보기</span>
+            </a>
+        </section>
+    </div>
+
+    <nav>
+        <ul id="navbar">
+            <li class="clickable">
+                <div class="icon">
+                    <img src="nav/ms.png">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                        <path d="M 25 0 C 23.978 0 22.02225 0.20675 20.40625 1.59375 C 20.17125 1.77075 19.669 2.207 18.75 3 L 31.25 3 C 30.448 2.294 29.87125 1.785 29.65625 1.625 C 27.99025 0.198 26.021 2.9605947e-16 25 0 z M 9 5 C 8.448 5 8 5.448 8 6 L 8 9 L 8 12.4375 L 8 25.25 L 16.3125 31.78125 C 18.4585 30.09425 20.03125 28.87075 20.40625 28.59375 C 22.42225 27.11675 24.433 27 25 27 C 25.971 27 27.863 27.216 29.625 28.625 C 29.986 28.914 31.511 30.12225 33.625 31.78125 L 42 25.25 L 42 12.4375 L 42 10 L 42 6 C 42 5.448 41.553 5 41 5 L 35 5 L 15 5 L 9 5 z M 24 10 L 26 10 L 26 16 L 32 16 L 32 18 L 26 18 L 26 24 L 24 24 L 24 18 L 18 18 L 18 16 L 24 16 L 24 10 z M 6 14.21875 C 2.779 17.07275 0.34375 19.25 0.34375 19.25 L 6 23.6875 L 6 14.21875 z M 44 14.21875 L 44 23.6875 L 49.65625 19.25 C 49.65625 19.25 47.221 17.07275 44 14.21875 z M 0 21.53125 L 0 44.65625 C 3.454 41.92525 9.95675 36.8085 14.71875 33.0625 L 8 27.8125 L 7.71875 27.59375 L 0 21.53125 z M 50 21.53125 L 44 26.21875 L 42 27.8125 L 42 27.78125 L 35.25 33.0625 C 39.996 36.7885 46.518 41.894 50 44.625 L 50 21.53125 z M 25 29 C 24.706 29 23.15875 29.07075 21.59375 30.21875 C 20.32275 31.15075 4.403 43.7055 0 47.1875 L 0 49 C 0 49.553 0.448 50 1 50 L 49 50 C 49.553 50 50 49.553 50 49 L 50 47.15625 C 45.497 43.62425 29.655 31.2105 28.375 30.1875 C 27.09 29.1575 25.709 29 25 29 z"/>
+                    </svg>
+                </div>
+            </li>
+            <li class="clickable">
+                <div class="icon">
+                    <img src="nav/ms.png">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" enable-background="new 0 0 26 26">
+                        <path d="M 13 0 C 6.6 0 4 4.1 4 9 L 4 9.875 C 3.4573707 10.320415 3 11.064995 3 12 C 3 13.259628 3.8670886 14.215719 5 14.65625 C 5.7142419 16.470447 6.6284873 18.211018 7.875 19.5625 C 9.1932117 20.991719 10.935714 22 13 22 C 15.105556 22 16.848499 20.995462 18.15625 19.5625 C 19.39189 18.208554 20.291102 16.462645 21 14.65625 C 22.104995 14.225004 23 13.296268 23 12 C 23 11.039081 22.546234 10.289273 22 9.84375 L 22 9 C 22 5.7 21.5875 2.00625 17.1875 2.40625 C 17.1875 2.40625 16.8 0 13 0 z M 17 4 C 17.6 9.2 19 6.8 19 11 L 19 11.46875 L 20.15625 11.28125 C 20.15625 11.28125 20.436535 11.26685 20.65625 11.34375 C 20.875965 11.42065 21 11.333333 21 12 C 21 12.615152 20.620861 12.947289 20.09375 13 L 19.46875 13.0625 L 19.25 13.65625 C 18.576532 15.436128 17.729749 17.076712 16.6875 18.21875 C 15.645251 19.360788 14.494444 20 13 20 C 11.564286 20 10.400538 19.364531 9.34375 18.21875 C 8.2869617 17.072969 7.4206786 15.428758 6.75 13.65625 L 6.53125 13.0625 L 5.90625 13 C 5.444818 12.953857 5 12.466667 5 12 C 5 11.400877 5.1036989 11.465019 5.34375 11.375 C 5.5838011 11.28498 5.90625 11.28125 5.90625 11.28125 L 7 11.40625 L 7 11 C 7 3.4 17 10.3 17 4 z M 8.375 21.96875 C 8.1640625 22.001563 8 22.2 8 22.5 L 8 25.59375 C 8 25.89375 8.29375 26.10625 8.59375 25.90625 L 11.59375 24.6875 L 11.59375 23.1875 L 8.59375 22 C 8.51875 21.975 8.4453125 21.957812 8.375 21.96875 z M 17.625 21.96875 C 17.554688 21.959375 17.48125 21.975 17.40625 22 L 14.40625 23.1875 L 14.40625 24.6875 L 17.40625 25.90625 C 17.70625 26.10625 18 25.9 18 25.5 L 18 22.40625 C 18 22.18125 17.835938 21.996875 17.625 21.96875 z M 12.5 23 C 12.2 23 12 23.2 12 23.5 L 12 24.5 C 12 24.8 12.2 25 12.5 25 L 13.5 25 C 13.8 25 14 24.8 14 24.5 L 14 23.5 C 14 23.2 13.8 23 13.5 23 L 12.5 23 z"/>
+                    </svg>
+                </div>
+            </li>
+            <li class="clickable">
+                <div class="icon">
+                    <img src="nav/ms.png">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" enable-background="new 0 0 26 26">
+                        <path d="M 13 0 C 9.3 0 6.3 2.49375 6 5.59375 C 6.9 5.09375 7.9 4.8 9 4.5 C 9 3.7 9.7 3 10.5 3 C 10.7 3 10.9875 3.0875 11.1875 3.1875 C 11.4875 2.4875 12.2 2 13 2 C 13.8 2 14.5125 2.4875 14.8125 3.1875 C 15.0125 3.0875 15.3 3 15.5 3 C 16.3 3 17 3.7 17 4.5 C 18.1 4.8 19.1 5.09375 20 5.59375 C 19.7 2.49375 16.7 -1.1842379e-15 13 0 z M 12.90625 5 C 8.5338273 5 4.5122171 6.8280079 3.34375 9.375 C 3.29549 9.4339122 3.267823 9.464229 3.21875 9.53125 C 2.8273704 10.065773 2.353856 10.907908 1.875 12.125 C 0.91728806 14.559185 0 18.555512 0 25 A 1.0001 1.0001 0 1 0 2 25 C 2 19.687048 2.6371879 16.18705 3.34375 13.9375 C 3.6325288 15.173869 4 15.90625 4 15.90625 C 4 15.90625 4.1063647 15.9074 4.125 15.90625 C 4.054901 16.121795 4 16.346039 4 16.59375 C 4 17.758749 4.8082997 18.601179 5.78125 19.03125 C 6.1683965 20.784251 6.9296153 22.432822 8.09375 23.6875 C 9.3656411 25.058316 11.077083 26 13 26 C 14.922917 26 16.634359 25.058316 17.90625 23.6875 C 19.070385 22.432822 19.831604 20.784251 20.21875 19.03125 C 21.1917 18.601179 22 17.758749 22 16.59375 C 22 16.346039 21.945099 16.121795 21.875 15.90625 C 21.885225 15.906295 21.896044 15.90625 21.90625 15.90625 C 22.20287 15.60963 22.450304 14.75506 22.625 13.78125 C 23.349413 16.02408 24 19.574987 24 25 A 1.0001 1.0001 0 1 0 26 25 C 26 18.555512 25.082712 14.559185 24.125 12.125 C 23.646144 10.907908 23.17263 10.065773 22.78125 9.53125 C 22.672266 9.3824059 22.600365 9.2960958 22.5 9.1875 C 21.218938 6.6888988 17.189884 5 12.90625 5 z M 14 8.90625 C 14 11.70625 18 13.90625 18 13.90625 A 1.0001 1.0001 0 0 0 18 14 L 18 15 L 18 16 L 19 16 C 19.05 16 19.484432 16.0603 19.71875 16.1875 C 19.953068 16.314701 20 16.328365 20 16.59375 C 20 17.127083 19.72875 17.356528 19.28125 17.40625 L 18.53125 17.5 L 18.40625 18.21875 C 18.138587 19.780119 17.415609 21.289566 16.4375 22.34375 C 15.459391 23.397934 14.277083 24 13 24 C 11.722917 24 10.540609 23.397934 9.5625 22.34375 C 8.5843911 21.289566 7.8614133 19.780119 7.59375 18.21875 L 7.46875 17.5 L 6.71875 17.40625 C 6.2712499 17.356528 6 17.127083 6 16.59375 C 6 16.328365 6.0469318 16.314701 6.28125 16.1875 C 6.5155682 16.060299 6.95 16 7 16 L 8 16 L 8 15 L 8 14 C 8.0027059 13.967678 8 13.939666 8 13.90625 A 1.0001 1.0001 0 0 0 8 13.8125 C 8.2086155 12.1002 14 11.852163 14 8.90625 z"/>
+                    </svg>
+                </div>
+            </li>
+            <li class="clickable">
+                <div class="icon">
+                    <img src="nav/ms.png">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" enable-background="new 0 0 26 26">
+                        <path d="M 1 0 C 0.449 0 0 0.449 0 1 L 0 17 C 0 17.551 0.449 18 1 18 L 17 18 C 17.551 18 18 17.551 18 17 L 18 1 C 18 0.449 17.551 0 17 0 L 1 0 z M 2 2 L 16 2 L 16 14 L 2 14 L 2 2 z M 19 2.90625 L 19 4.9375 L 20.8125 5.25 L 19 15.75 L 19 17 C 19 18.104 18.103 19 17 19 L 6.40625 19 L 19.09375 21.1875 C 19.63775 21.2815 20.157 20.918 20.25 20.375 L 22.9375 4.59375 C 23.0315 4.05075 22.669 3.5295 22.125 3.4375 L 19 2.90625 z M 9 3.9375 C 7.849 3.9375 6.875 4.72875 6.875 6.21875 C 6.875 7.19275 7.30925 8.17125 7.90625 8.78125 C 8.14025 9.39125 7.74225 9.62325 7.65625 9.65625 C 6.45025 10.09225 5.03125 10.9015 5.03125 11.6875 L 5.03125 12.96875 L 12.96875 12.96875 L 12.96875 11.6875 C 12.96975 10.8775 11.54725 10.07425 10.28125 9.65625 C 10.22325 9.63725 9.86375 9.47525 10.09375 8.78125 C 10.68875 8.17025 11.15625 7.18775 11.15625 6.21875 C 11.15625 4.72975 10.151 3.9375 9 3.9375 z M 23.40625 7.90625 L 23.0625 9.875 L 23.78125 10.03125 L 21.03125 21.71875 L 20.625 21.625 C 20.263 21.976 19.787 22.1875 19.25 22.1875 C 19.139 22.1875 19.02025 22.17525 18.90625 22.15625 L 5.0625 19.78125 L 4.78125 20.96875 C 4.65825 21.50575 4.99425 22.0625 5.53125 22.1875 L 21.09375 25.84375 C 21.63075 25.97075 22.1855 25.62875 22.3125 25.09375 L 25.9375 9.53125 C 26.0645 8.99525 25.75675 8.4395 25.21875 8.3125 L 23.40625 7.90625 z"/>
+                    </svg>
+                </div>
+            </li>
+            <li class="clickable">
+                <div class="icon">
+                    <img src="nav/ms.png">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24">
+                        <path d="M 12 2 C 8.7 2 6 4.7 6 8 C 6 13.2 12 19.09375 12 19.09375 C 12 19.09375 18 13.1 18 8 C 18 4.7 15.3 2 12 2 z M 12 5.90625 C 13.1 5.90625 14.09375 6.9 14.09375 8 C 14.09375 9.2 13.2 10.09375 12 10.09375 C 10.8 10.09375 9.90625 9.1 9.90625 8 C 9.90625 6.8 10.9 5.90625 12 5.90625 z M 6.78125 15.125 C 5.520437 15.387669 4.4624491 15.707617 3.625 16.15625 C 3.2062754 16.380567 2.8317923 16.633144 2.53125 16.96875 C 2.2307077 17.304356 2 17.791204 2 18.3125 C 2 19.131944 2.5308238 19.732131 3.125 20.15625 C 3.7191762 20.580369 4.4636546 20.892221 5.34375 21.15625 C 7.1039407 21.684307 9.42 22 12 22 C 14.58 22 16.896059 21.684307 18.65625 21.15625 C 19.536345 20.892221 20.280824 20.580369 20.875 20.15625 C 21.469176 19.732131 22 19.131944 22 18.3125 C 22 17.269907 21.22078 16.5932 20.375 16.125 C 19.52922 15.6568 18.440671 15.33907 17.15625 15.125 L 16.84375 17.09375 C 17.959329 17.27968 18.85203 17.5682 19.40625 17.875 C 19.77573 18.079533 19.915984 18.251048 19.96875 18.3125 C 19.937446 18.348024 19.874785 18.419875 19.71875 18.53125 C 19.406676 18.754006 18.838655 19.026529 18.09375 19.25 C 16.603941 19.696943 14.42 20 12 20 C 9.58 20 7.3960593 19.696943 5.90625 19.25 C 5.1613454 19.026529 4.5933238 18.754006 4.28125 18.53125 C 4.1360157 18.427582 4.0576869 18.346835 4.03125 18.3125 C 4.1057077 18.229356 4.2812246 18.088183 4.5625 17.9375 C 5.1250509 17.636133 6.079563 17.331081 7.21875 17.09375 L 6.78125 15.125 z"/>
+                    </svg>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <button id="arrow-right" class="arrow">
+    <span class="chevron"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path
+            d="M319.1 290.5c20.2-20.2 19.9-53.2-.6-73.7s-53.5-20.8-73.7-.6l-190 190c-20.2 20.2-19.9 53.2.6 73.7s53.5 20.8 73.7.6l190-190z"/><path
+            d="M319.1 217c20.2 20.2 19.9 53.2-.6 73.7s-53.5 20.8-73.7.6l-190-190c-20.1-20.2-19.8-53.2.7-73.7S109 6.8 129.1 27l190 190z"/></svg></span>
+        <span class="chevron delayed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path
+                d="M319.1 290.5c20.2-20.2 19.9-53.2-.6-73.7s-53.5-20.8-73.7-.6l-190 190c-20.2 20.2-19.9 53.2.6 73.7s53.5 20.8 73.7.6l190-190z"/><path
+                d="M319.1 217c20.2 20.2 19.9 53.2-.6 73.7s-53.5 20.8-73.7.6l-190-190c-20.1-20.2-19.8-53.2.7-73.7S109 6.8 129.1 27l190 190z"/></svg></span>
+    </button>
+    <button id="arrow-left" class="arrow">
+    <span class="chevron"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path
+            d="M319.1 290.5c20.2-20.2 19.9-53.2-.6-73.7s-53.5-20.8-73.7-.6l-190 190c-20.2 20.2-19.9 53.2.6 73.7s53.5 20.8 73.7.6l190-190z"/><path
+            d="M319.1 217c20.2 20.2 19.9 53.2-.6 73.7s-53.5 20.8-73.7.6l-190-190c-20.1-20.2-19.8-53.2.7-73.7S109 6.8 129.1 27l190 190z"/></svg></span>
+        <span class="chevron delayed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path
+                d="M319.1 290.5c20.2-20.2 19.9-53.2-.6-73.7s-53.5-20.8-73.7-.6l-190 190c-20.2 20.2-19.9 53.2.6 73.7s53.5 20.8 73.7.6l190-190z"/><path
+                d="M319.1 217c20.2 20.2 19.9 53.2-.6 73.7s-53.5 20.8-73.7.6l-190-190c-20.1-20.2-19.8-53.2.7-73.7S109 6.8 129.1 27l190 190z"/></svg></span>
+    </button>
+</div>
+
+<div id="lightbox">
+    <div id="loading"></div>
+    <img id="photo-view">
+    <div id="photo-index">1/16</div>
+    <button id="lightbox-close" class="clickable">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+        </svg>
+    </button>
+</div>
+
+<script>
+    (function () {
+        const container = document.getElementById('container');
+        const navbar = document.getElementById('navbar');
+        const left = document.getElementById('arrow-left');
+        const right = document.getElementById('arrow-right');
+        const count = navbar.querySelectorAll('li').length;
+        let current_tab = -1;
+
+        function pseudoViewportWidth() {
+            return Math.min(window.innerWidth, window.innerHeight);
+        }
+        left.onclick = function () {
+            container.scrollLeft = Math.max(0, current_tab - 1) * pseudoViewportWidth();
+        };
+        right.onclick = function () {
+            container.scrollLeft = Math.min(count - 1, current_tab + 1) * pseudoViewportWidth();
+        };
+        Array.prototype.forEach.call(navbar.querySelectorAll('li'), function(item, index) {
+            item.onclick = function () {
+                container.scrollLeft = index * pseudoViewportWidth();
+            };
+        });
+        (container.onscroll = function () {
+            Array.prototype.forEach.call(navbar.querySelectorAll('li'), function(item, index) {
+                if (Math.abs(index * pseudoViewportWidth() - container.scrollLeft) < pseudoViewportWidth() / 2) {
+                    item.classList.add('nav-current');
+                    if (current_tab != index) {
+                        doAnimate(index);
+                    }
+                    current_tab = index;
+                    left.style.visibility = (index == 0) ? 'hidden' : '';
+                    right.style.visibility = (index == count - 1) ? 'hidden' : '';
+                } else {
+                    item.classList.remove('nav-current');
+                }
+            });
+        })();
+        function doAnimate(index) {
+            const section = container.querySelectorAll('section').item(index);
+            Array.prototype.forEach.call(section.querySelectorAll('.animate'), function(item, index) {
+                item.style.animationDelay = (index * .2).toString() + 's';
+                item.classList.add('animated');
+                // item.classList.remove('animate');
+            });
+        }
+    })();
+</script>
+
+<script src="hammer.min.js"></script>
+<script>
+    (function () {
+        const list = document.getElementById('photo-list');
+        const lightbox = document.getElementById('lightbox');
+        const close = document.getElementById('lightbox-close');
+        const view = document.getElementById('photo-view');
+        const index_view = document.getElementById('photo-index');
+        const loading = document.getElementById('loading');
+        const photo_count = list.querySelectorAll('li').length;
+        let current_photo = 0;
+        Array.prototype.forEach.call(list.querySelectorAll('li'), function(item, index) {
+            item.onclick = function () {
+                const agent = navigator.userAgent.toLowerCase();
+                if ((navigator.appName == 'Netscape' && agent.indexOf('trident') != -1) || (agent.indexOf("msie") != -1)) {
+                    // don't open lightbox in IE
+                    window.open(item.getAttribute('data-hr'), '_blank');
+                }else{
+                    current_photo = index;
+                    updatePhoto();
+                }
+            };
+        });
+        view.onload = function () {
+            ratio_y = this.naturalWidth / this.naturalHeight * window.innerHeight / window.innerWidth;
+            loading.style.visibility = 'hidden';
+            view.style.visibility = 'inherit';
+        };
+        close.onclick = function () {
+            history.back();
+        };
+        window.onpopstate = function (ev) {
+            if (!ev.state) {
+                closeLightbox();
+            } else {
+                current_photo = ev.state;
+                updatePhoto();
+            }
+        };
+
+        const mc = new Hammer.Manager(lightbox);
+        const pan = new Hammer.Pan();
+        const pinch = new Hammer.Pinch();
+
+        let ratio_y = 1;
+        let base_x = 0;
+        let base_y = 0;
+        let base_scale = 1;
+        let offset_x = 0;
+        let offset_y = 0;
+        let consume_pan = 0;
+        let tx = 0;
+        let ty = 0;
+        let scale = 1;
+        let swipe_threshold = window.innerWidth / 2;
+
+        function resetTransform() {
+            base_x = 0;
+            base_y = 0;
+            base_scale = 1;
+            tx = 0;
+            ty = 0;
+            view.style.transform = '';
+        }
+
+        function updatePhoto() {
+            index_view.textContent = (current_photo + 1) + '/' + photo_count;
+            const item = list.querySelectorAll('li').item(current_photo);
+            const itemsrc = item.getAttribute('data-hr');
+            if (view.src != itemsrc) {
+                loading.style.visibility = 'inherit';
+                view.style.visibility = 'hidden';
+                view.src = itemsrc;
+                resetTransform();
+            }
+            if (history.state && history.state != current_photo) {
+                history.replaceState(current_photo, document.title);
+            } else {
+                openLightbox();
+                history.pushState(current_photo, document.title);
+            }
+        }
+
+        function openLightbox() {
+            lightbox.style.visibility = 'inherit';
+        }
+
+        function closeLightbox() {
+            lightbox.style.visibility = 'hidden';
+            view.src = null;
+            resetTransform();
+        }
+
+        function swipeOffset() {
+            const minscale = Math.max(0, base_scale - 1);
+            if (tx > window.innerWidth * minscale / 2) {
+                return tx - window.innerWidth * minscale / 2;
+            }
+            if (tx < -window.innerWidth * minscale / 2) {
+                return tx + window.innerWidth * minscale / 2;
+            }
+            return 0;
+        }
+
+        function verticalOffset() {
+            const minscale = Math.max(0, base_scale / ratio_y - 1);
+            if (ty > window.innerHeight * minscale / 2) {
+                return ty - window.innerHeight * minscale / 2;
+            }
+            if (ty < -window.innerHeight * minscale / 2) {
+                return ty + window.innerHeight * minscale / 2;
+            }
+            return 0;
+        }
+
+        pan.recognizeWith(pinch);
+        mc.add([pan, pinch]);
+
+        mc.on("pan", function (ev) {
+            if (consume_pan > 0) {
+                consume_pan--;
+                return;
+            }
+            tx = base_x + ev.deltaX - offset_x;
+            ty = base_y + ev.deltaY - offset_y;
+            view.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + base_scale + ')';
+            const swipe_offset = Math.abs(swipeOffset());
+            view.style.opacity = Math.max(Math.min(1, 1 - swipe_offset / swipe_threshold), .25).toString();
+        });
+        mc.on("panstart", function (ev) {
+            swipe_threshold = window.innerWidth / 4;
+            offset_x = ev.deltaX;
+            offset_y = ev.deltaY;
+        });
+        mc.on("panend", function (ev) {
+            view.style.opacity = '1';
+            const swipe_offset = swipeOffset();
+            if (swipe_offset > swipe_threshold) {
+                current_photo--;
+                if (current_photo < 0) {
+                    current_photo = photo_count - 1;
+                }
+                updatePhoto();
+                return;
+            } else if (swipe_offset < -swipe_threshold) {
+                current_photo++;
+                if (current_photo >= photo_count) {
+                    current_photo = 0;
+                }
+                updatePhoto();
+                return;
+            }
+            if (base_scale < 1) {
+                base_scale = 1;
+            }
+            if (base_scale > 10) {
+                tx *= 10 / base_scale;
+                ty *= 10 / base_scale;
+                base_scale = 10;
+            }
+            tx -= swipeOffset();
+            ty -= verticalOffset();
+            base_x = tx;
+            base_y = ty;
+            view.style.transform = 'translate(' + base_x + 'px,' + base_y + 'px) scale(' + base_scale + ')';
+        });
+        mc.on("pinch", function (ev) {
+            tx = base_x * ev.scale + ev.center.x - offset_x;
+            ty = base_y * ev.scale + ev.center.y - offset_y;
+            scale = base_scale * ev.scale;
+            view.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + scale + ')';
+        });
+        mc.on("pinchstart", function (ev) {
+            base_x = tx;
+            base_y = ty;
+            offset_x = ev.center.x;
+            offset_y = ev.center.y;
+        });
+        mc.on("pinchend", function (ev) {
+            base_scale = scale;
+            base_x = tx;
+            base_y = ty;
+            consume_pan = 1;
+        });
+    })();
+
+    let map;
+    let directionsService;
+    let directionsRenderer;
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 37.506512, lng: 127.043780},
+            zoom: 14,
+            controlSize: 24,
+        });
+        directionsService = new google.maps.DirectionsService();
+        directionsRenderer = new google.maps.DirectionsRenderer();
+        directionsRenderer.setMap(map);
+        const raum_marker = new google.maps.Marker({
+            position: new google.maps.LatLng(37.508453, 127.039990),
+            icon: {url: '/raum.png', anchor: new google.maps.Point(24, 60), scaledSize: new google.maps.Size(48, 60)},
+            map: map
+        });
+        const bus_marker = new google.maps.Marker({
+            position: new google.maps.LatLng(37.504391, 127.047832),
+            icon: {url: '/bus.png', anchor: new google.maps.Point(24, 60), scaledSize: new google.maps.Size(48, 60)},
+            map: map
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJYpfi80V4kpDkX8EGPjhO32d-z4rfiuc&callback=initMap"
+        async defer></script>
+</body>
+</html>
