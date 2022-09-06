@@ -561,6 +561,57 @@
             float: left;
             //margin-top: 3%;
         }
+        
+        .call_list .list_wrap {
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .call_list .list_wrap:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        .call .list_wrap.on .list_con {
+            display: block;
+        }
+
+        .call_list .list_wrap.on .info_detail {
+            background-position: center -30px;
+        }
+
+        .call_list .list_wrap li {
+            float: left;
+            width: 50%;
+            text-align: center;
+        }
+
+        .call_list .list_wrap h3 {
+            font-size: 15px;
+            height: 20px;
+            padding-bottom: 8px;
+        }
+
+        .call .list_wrap .list_con {
+            display: none;
+            margin: 15px 0 10%;
+            padding-bottom: 10px;
+            height: 60px;
+        }
+
+        .call_list .list_wrap .btn_wrap {
+            margin-top: 10px;
+        }
+
+        .call_list .list_wrap .btn_wrap a {
+            margin: 0 10px;
+        }
+
+        .call_list .list_wrap span:nth-child(1) {
+            font-size: 14px;
+            margin-right: 5px;
+        }
     </style>
     <title>정연호 | 최지은</title>
 </head>
@@ -625,7 +676,6 @@
                    </dd>
                </dl>
                <div class="list_wrap">
-                   <a href="javascript:;" class="info_detail">정보 더보기</a>
                    <ul>
                        <li>
                            <h3>신랑측 혼주</h3>
