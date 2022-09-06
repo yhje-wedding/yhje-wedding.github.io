@@ -532,7 +532,9 @@
         }
         
         .call_list {
-            width: 100%;   
+            background: #f8f8f8;
+            padding: 60px 0;
+            text-align: center;
         }
         .call_list .txt {
             width: 60%;
@@ -540,9 +542,24 @@
             text-align: center;
         }
         
-        .call_list .icons {
-            width: 40%;
+        .call_list dl {
+            width: 100%;
+            padding: 10px 0;
+        }
+        
+        .call_list dl dt {
             float: left;
+            margin-top: 4%;
+            width: 56%;
+            padding: 0px;
+            font-size: 20px;
+        }
+        
+        .call_list dl dd {
+            padding: 0px 10px;
+            width: 12%;
+            float: left;
+            margin-top: 3%;
         }
     </style>
     <title>정연호 | 최지은</title>
@@ -577,11 +594,21 @@
                 </div>
             </div>-->
             <div class="call_list">
-                <div class="txt">신랑에게 연락하기</div>
-                <div class="icons">
-                    <img src="img/call.png">
-                    <img src="img/sms.png">
-                </div>
+               <d1 class="husband">
+                   <dt>
+                       <span></span>신랑에게 연락하기</span>
+                   </dt>
+                   <dd>
+                       <a href="tel:01099698995" class="at_Groom_Phone">
+                           <img src="/img/call.png" width="32" alt="전화 아이콘">
+                       </a>
+                   </dd>
+                   <dd>
+                       <a href="sms:01099698995" class="as_Groom_Phone">
+                           <img src="/img/sms.png" width="36" alt="SMS 아이콘">
+                       </a>
+                   </dd>
+               </d1>
             </div>
         </section>
         <section id="album">
