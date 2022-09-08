@@ -936,7 +936,7 @@
         const fyi = document.getElementsByClassName('fyi');
         let current_tab = -1;
         
-        fyi.style.marginLeft = fyi.clinetWidth/2;
+        fyi[0].style.marginLeft = fyi[0].clinetWidth/2;
         function pseudoViewportWidth() {
             return Math.min(window.innerWidth, window.innerHeight);
         }
