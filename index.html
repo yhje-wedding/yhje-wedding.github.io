@@ -933,8 +933,10 @@
         const left = document.getElementById('arrow-left');
         const right = document.getElementById('arrow-right');
         const count = navbar.querySelectorAll('li').length;
+        const fyi = document.getElementsByClassName('fyi');
         let current_tab = -1;
-
+        
+        fyi.style.marginLeft = fyi.clinetWidth/2;
         function pseudoViewportWidth() {
             return Math.min(window.innerWidth, window.innerHeight);
         }
