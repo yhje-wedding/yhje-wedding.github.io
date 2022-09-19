@@ -27,6 +27,7 @@
         }
 
         button, .clickable {
+            list-style:none;
             cursor: pointer;
             width: 33%;
             height: 33%;
@@ -630,11 +631,11 @@
         </div>
         <div id="album">
             <h1 class="divider"><span></span>Gallery<span></span></h1>
-            <div id="photo-list">
-                <div class="clickable" data-hr="photo/1.jpg"><img class="photo" src="photo/1.jpg"></div>
-                <div class="clickable" data-hr="photo/2.jpg"><img class="photo" src="photo/2.jpg"></div>
-                <div class="clickable" data-hr="photo/3.jpg"><img class="photo" src="photo/3.jpg"></div>
-            </div>
+            <ul id="photo-list">
+                <li class="clickable" data-hr="photo/1.jpg"><img class="photo" src="photo/1.jpg"></li>
+                <li class="clickable" data-hr="photo/2.jpg"><img class="photo" src="photo/2.jpg"></li>
+                <li class="clickable" data-hr="photo/3.jpg"><img class="photo" src="photo/3.jpg"></li>
+            </ul>
         </div>
         <div id="directions">
             <h1 class="divider"><span></span>오시는 길<span></span></h1>
