@@ -365,7 +365,7 @@
 
         #directions .applink .text {
             font-size: 10px;
-            font-weight: bold
+            font-weight: bold;
             margin: auto;
         }
 
@@ -478,9 +478,10 @@
         
         .call_list {
             background: #f8f8f8;
-            padding: 5px 0 30px;
+            padding: 5px 0;
             text-align: center;
             width: 100%;
+            color: #121329;
         }
         
         .call_list dl {
@@ -558,18 +559,20 @@
             margin-right: 5px;
         }
         
-        .btn_wrap {
-            text-align: center;   
+        .btn_wrap { 
+            background: #f8f8f8;
+        }
+        
+        .btn_wrap .account  {
+            float: left;
+            width: 50%;
+            text-align: center;
         }
         
         .btn_wrap .an_btn {
             width: 100%;
-            height: 46px;
             line-height: 46px;
-            background: #ebebeb;
             color: #000;
-            margin: 10px auto 0;
-            text-indent: -14px;
             font-size: 14px;
         }
         
@@ -766,8 +769,12 @@
                 </div>
             </div>
             <div class="btn_wrap">
-                <a href="javascript:;" class="btn an_btn type03 groom"><i class="ico pay_icon"></i> 신랑측 계좌번호</a>
-                <a href="javascript:;" class="btn an_btn type03 bride"><i class="ico pay_icon"></i> 신부측 계좌번호</a>
+                <div class="account_num">
+                    <a href="javascript:;" class="btn an_btn type03 groom"><i class="ico pay_icon"></i> 신랑측 계좌번호</a>
+                </div>
+                <div class="account_num">
+                    <a href="javascript:;" class="btn an_btn type03 bride"><i class="ico pay_icon"></i> 신부측 계좌번호</a>
+                </div>
             </div>
             <div class="text fyi">
                 ※ 화환은 정중히 사양합니다.<br>
