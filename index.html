@@ -800,6 +800,7 @@
 
         Array.prototype.forEach.call(list.querySelectorAll('li'), function(item, index) {
             item.onclick = function () {
+                console.log("사진 클릭");
                 const agent = navigator.userAgent.toLowerCase();
                 if ((navigator.appName == 'Netscape' && agent.indexOf('trident') != -1) || (agent.indexOf("msie") != -1)) {
                     // don't open lightbox in IE
@@ -856,16 +857,20 @@
         } 
 
         function updatePhoto() {
+            
             index_view.textContent = (current_photo + 1) + '/' + photo_count;
             const item = list.querySelectorAll('li').item(current_photo);
             const itemsrc = item.getAttribute('data-hr');
+            console.log("view.src : "+view.src);
+            console.log("itemsrc : "+itemsrc);
             if (view.src != itemsrc) {
                 loading.style.visibility = 'inherit';
                 view.style.visibility = 'hidden';
                 view.src = itemsrc;
                 resetTransform();
             }
-
+            console.log("history.state:"+history.state);            
+            console.log("current_photo:"+current_photo);
             if (history.state && history.state != current_photo) {
                 history.replaceState(current_photo, document.title);
             } else {
