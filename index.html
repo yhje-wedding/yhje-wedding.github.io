@@ -14,6 +14,7 @@
         }
         
         html, body {
+            width: 100%
             height: 100%;
             margin: 0;
             padding: 0;
@@ -34,32 +35,10 @@
         }
 
         #pseudo-viewport {
-            display: flex;
-            flex-flow: column;
-            height: 100%;
-            margin: auto;
-            max-width: 100vh;
-            position: relative;
             width: 100%;
         }
         #container {
             border: 1px hidden rgba(0, 0, 0, 0);
-            display: flex;
-            flex-wrap: nowrap;
-            height: 100%;
-            overflow-x: scroll;
-            overflow-y: hidden;
-            scroll-behavior: smooth;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-            -ms-scroll-snap-type: mandatory;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        #container::-webkit-scrollbar {
-            width: 0;
-            height: 0;
         }
 
         section {
@@ -73,10 +52,8 @@
         }
 
         .overlay {
-            height: 100%;
             left: 0;
             padding: 0 40px;
-            position: absolute;
             right: 0;
             top: 0;
         }
@@ -282,9 +259,7 @@
         #lightbox {
             background: rgba(0, 0, 0, 0.9);
             display: flex;
-            height: 100%;
             left: 0;
-            position: absolute;
             visibility: hidden;
             top: 0;
             width: 100%;
@@ -298,7 +273,6 @@
             margin: 10px;
             opacity: .59;
             outline: none;
-            position: absolute;
             top: 0;
             right: 0;
             width: 60px;
@@ -666,7 +640,7 @@
 <body>
 <div id="pseudo-viewport">
     <div id="container">
-        <section id="intro">
+        <div id="intro">
             <div class="overlay">
                 <div class="logo animate">
                     <img class="photo" src="photo/main_logo.jpg" style="width:100%;height:100%">
@@ -680,8 +654,8 @@
                     <h4>2022년 11월 19일 낮 12시</h4>
                 </div>
             </div>
-        </section>
-        <section id="contact">
+        </div>
+        <div id="contact">
             <div class="overlay">
             <!--<div class="overlay">
                 <div class="text about animate">
@@ -705,16 +679,16 @@
                 귀한걸음 하시어 축복해주시면 감사하겠습니다.
             </div>
             </div>
-        </section>
-        <section id="album">
+        </div>
+        <div id="album">
             <h1 class="divider"><span></span>Gallery<span></span></h1>
             <ul id="photo-list">
                 <li class="clickable animate" data-hr="photo/1.jpg"><img class="photo" src="photo/1.jpg"></li>
                 <li class="clickable animate" data-hr="photo/2.jpg"><img class="photo" src="photo/2.jpg"></li>
                 <li class="clickable animate" data-hr="photo/3.jpg"><img class="photo" src="photo/3.jpg"></li>
             </ul>
-        </section>
-        <section id="directions">
+        </div>
+        <div id="directions">
             <h1 class="divider"><span></span>오시는 길<span></span></h1>
             <div id="map"></div>
             <div class="appslink">
@@ -755,8 +729,8 @@
                 <span>· 센텀시티역 4번 출구앞에서 센텀사이언스파크 정문까지 셔틀버스 운행(15분 간격)</span><br>
                 <span>상기 순환코스는 당일 현장 상황에 따라 변동 될 수 있습니다.</span>           
             </div>           
-        </section>
-        <section id="call_info">
+        </div>
+        <div id="call_info">
             <div class="call_list">
                <dl class="husband">
                    <dt>
@@ -848,69 +822,8 @@
                 돕는데 쓰겠습니다.<br>
                 문의처 : 성일쌀상회 / 전화번호 : <a href="tel:0512550879"> Tel. 051-255-0879</a>
             </div> 
-        </section>
+        </div>
     </div>
-
-    <nav>
-        <ul id="navbar">
-            <li class="clickable">
-                <div class="icon">
-                    <img src="nav/ms.png">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
-                        <path d="M 25 0 C 23.978 0 22.02225 0.20675 20.40625 1.59375 C 20.17125 1.77075 19.669 2.207 18.75 3 L 31.25 3 C 30.448 2.294 29.87125 1.785 29.65625 1.625 C 27.99025 0.198 26.021 2.9605947e-16 25 0 z M 9 5 C 8.448 5 8 5.448 8 6 L 8 9 L 8 12.4375 L 8 25.25 L 16.3125 31.78125 C 18.4585 30.09425 20.03125 28.87075 20.40625 28.59375 C 22.42225 27.11675 24.433 27 25 27 C 25.971 27 27.863 27.216 29.625 28.625 C 29.986 28.914 31.511 30.12225 33.625 31.78125 L 42 25.25 L 42 12.4375 L 42 10 L 42 6 C 42 5.448 41.553 5 41 5 L 35 5 L 15 5 L 9 5 z M 24 10 L 26 10 L 26 16 L 32 16 L 32 18 L 26 18 L 26 24 L 24 24 L 24 18 L 18 18 L 18 16 L 24 16 L 24 10 z M 6 14.21875 C 2.779 17.07275 0.34375 19.25 0.34375 19.25 L 6 23.6875 L 6 14.21875 z M 44 14.21875 L 44 23.6875 L 49.65625 19.25 C 49.65625 19.25 47.221 17.07275 44 14.21875 z M 0 21.53125 L 0 44.65625 C 3.454 41.92525 9.95675 36.8085 14.71875 33.0625 L 8 27.8125 L 7.71875 27.59375 L 0 21.53125 z M 50 21.53125 L 44 26.21875 L 42 27.8125 L 42 27.78125 L 35.25 33.0625 C 39.996 36.7885 46.518 41.894 50 44.625 L 50 21.53125 z M 25 29 C 24.706 29 23.15875 29.07075 21.59375 30.21875 C 20.32275 31.15075 4.403 43.7055 0 47.1875 L 0 49 C 0 49.553 0.448 50 1 50 L 49 50 C 49.553 50 50 49.553 50 49 L 50 47.15625 C 45.497 43.62425 29.655 31.2105 28.375 30.1875 C 27.09 29.1575 25.709 29 25 29 z"/>
-                    </svg>
-                </div>
-            </li>
-            <li class="clickable">
-                <div class="icon">
-                    <img src="nav/ms.png">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" enable-background="new 0 0 32 32">
-                        <path d="M4 16v16h24V6.4l-3.3-3.2C21.5.1 21.1 0 12.7 0H4v16zM20.2 3.7c.2 2.2.9 2.9 3.1 3.1l2.7.3V31H6V1h6.9c6.9 0 7 0 7.3 2.7z"/><path d="M9 5c0 .5 1.8 1 4 1s4-.5 4-1c0-.6-1.8-1-4-1s-4 .4-4 1zM12.3 9.7c2 .2 5.4.2 7.5 0 2-.2.3-.4-3.8-.4s-5.8.2-3.7.4zM9 14c0 .6 3 1 7 1s7-.4 7-1-3-1-7-1-7 .4-7 1zM9 18c0 .6 3 1 7 1s7-.4 7-1-3-1-7-1-7 .4-7 1zM12.3 22.7c2 .2 5.4.2 7.5 0 2-.2.3-.4-3.8-.4s-5.8.2-3.7.4zM9 27c0 .6 3 1 7 1s7-.4 7-1-3-1-7-1-7 .4-7 1z"/>
-                    </svg>
-                </div>
-            </li>
-            <li class="clickable">
-                <div class="icon">
-                    <img src="nav/ms.png">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" enable-background="new 0 0 26 26">
-                        <path d="M 1 0 C 0.449 0 0 0.449 0 1 L 0 17 C 0 17.551 0.449 18 1 18 L 17 18 C 17.551 18 18 17.551 18 17 L 18 1 C 18 0.449 17.551 0 17 0 L 1 0 z M 2 2 L 16 2 L 16 14 L 2 14 L 2 2 z M 19 2.90625 L 19 4.9375 L 20.8125 5.25 L 19 15.75 L 19 17 C 19 18.104 18.103 19 17 19 L 6.40625 19 L 19.09375 21.1875 C 19.63775 21.2815 20.157 20.918 20.25 20.375 L 22.9375 4.59375 C 23.0315 4.05075 22.669 3.5295 22.125 3.4375 L 19 2.90625 z M 9 3.9375 C 7.849 3.9375 6.875 4.72875 6.875 6.21875 C 6.875 7.19275 7.30925 8.17125 7.90625 8.78125 C 8.14025 9.39125 7.74225 9.62325 7.65625 9.65625 C 6.45025 10.09225 5.03125 10.9015 5.03125 11.6875 L 5.03125 12.96875 L 12.96875 12.96875 L 12.96875 11.6875 C 12.96975 10.8775 11.54725 10.07425 10.28125 9.65625 C 10.22325 9.63725 9.86375 9.47525 10.09375 8.78125 C 10.68875 8.17025 11.15625 7.18775 11.15625 6.21875 C 11.15625 4.72975 10.151 3.9375 9 3.9375 z M 23.40625 7.90625 L 23.0625 9.875 L 23.78125 10.03125 L 21.03125 21.71875 L 20.625 21.625 C 20.263 21.976 19.787 22.1875 19.25 22.1875 C 19.139 22.1875 19.02025 22.17525 18.90625 22.15625 L 5.0625 19.78125 L 4.78125 20.96875 C 4.65825 21.50575 4.99425 22.0625 5.53125 22.1875 L 21.09375 25.84375 C 21.63075 25.97075 22.1855 25.62875 22.3125 25.09375 L 25.9375 9.53125 C 26.0645 8.99525 25.75675 8.4395 25.21875 8.3125 L 23.40625 7.90625 z"/>
-                    </svg>
-                </div>
-            </li>
-            <li class="clickable">
-                <div class="icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24">
-                        <path d="M 12 2 C 8.7 2 6 4.7 6 8 C 6 13.2 12 19.09375 12 19.09375 C 12 19.09375 18 13.1 18 8 C 18 4.7 15.3 2 12 2 z M 12 5.90625 C 13.1 5.90625 14.09375 6.9 14.09375 8 C 14.09375 9.2 13.2 10.09375 12 10.09375 C 10.8 10.09375 9.90625 9.1 9.90625 8 C 9.90625 6.8 10.9 5.90625 12 5.90625 z M 6.78125 15.125 C 5.520437 15.387669 4.4624491 15.707617 3.625 16.15625 C 3.2062754 16.380567 2.8317923 16.633144 2.53125 16.96875 C 2.2307077 17.304356 2 17.791204 2 18.3125 C 2 19.131944 2.5308238 19.732131 3.125 20.15625 C 3.7191762 20.580369 4.4636546 20.892221 5.34375 21.15625 C 7.1039407 21.684307 9.42 22 12 22 C 14.58 22 16.896059 21.684307 18.65625 21.15625 C 19.536345 20.892221 20.280824 20.580369 20.875 20.15625 C 21.469176 19.732131 22 19.131944 22 18.3125 C 22 17.269907 21.22078 16.5932 20.375 16.125 C 19.52922 15.6568 18.440671 15.33907 17.15625 15.125 L 16.84375 17.09375 C 17.959329 17.27968 18.85203 17.5682 19.40625 17.875 C 19.77573 18.079533 19.915984 18.251048 19.96875 18.3125 C 19.937446 18.348024 19.874785 18.419875 19.71875 18.53125 C 19.406676 18.754006 18.838655 19.026529 18.09375 19.25 C 16.603941 19.696943 14.42 20 12 20 C 9.58 20 7.3960593 19.696943 5.90625 19.25 C 5.1613454 19.026529 4.5933238 18.754006 4.28125 18.53125 C 4.1360157 18.427582 4.0576869 18.346835 4.03125 18.3125 C 4.1057077 18.229356 4.2812246 18.088183 4.5625 17.9375 C 5.1250509 17.636133 6.079563 17.331081 7.21875 17.09375 L 6.78125 15.125 z"/>
-                    </svg>
-                </div>
-            </li>
-            <li class="clickable">
-                <div class="icon">
-                    <img src="nav/ms.png">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" enable-background="new 0 0 32 32">
-                        <path d="M2.9 3C.5 5.3-.1 6.7.2 9.2c.3 3.1.5 3.3 4.3 3.3 3.2 0 4-.4 4.4-2C9.4 7.7 10.8 7 16 7c5.2 0 6.6.7 7.1 3.5.4 1.6 1.2 2 4.4 2 3.8 0 4-.2 4.3-3.3.3-2.5-.3-3.9-2.7-6.2C26.2.1 25.9 0 16 0 6.1 0 5.8.1 2.9 3zm23.5-.4c.9.4 2 1.4 2.5 2.3.8 1.4-.4 1.6-12.9 1.6-12.6 0-13.7-.1-12.9-1.7.5-.9 1.4-1.9 2.1-2.1 1.9-.8 19.3-.8 21.2-.1zM7 10c0 .5-1.1 1-2.5 1S2 10.5 2 10c0-.6 1.1-1 2.5-1S7 9.4 7 10zm23 0c0 .5-1.1 1-2.5 1s-2.5-.5-2.5-1c0-.6 1.1-1 2.5-1s2.5.4 2.5 1z"/><path d="M12.3 10.8c-1 1.1-2.5 2.1-3.4 2.5-2 .7-7.3 13.6-6.7 16.3.3 1.8 1.4 1.9 13.8 1.9s13.5-.1 13.8-1.9c.6-2.7-4.7-15.6-6.7-16.3-.9-.4-2.4-1.4-3.4-2.5-2.3-2.3-5.1-2.3-7.4 0zm6.2 1.2c.4.6-.7 1-2.5 1s-2.9-.4-2.5-1c.3-.6 1.5-1 2.5-1s2.2.4 2.5 1zm6.6 7.7c1.1 2.7 2.3 6 2.6 7.5l.6 2.8H3.8l.5-2.8c.3-1.5 1.5-4.8 2.6-7.5l2-4.7h14.2l2 4.7z"/><path d="M12.6 18.3c-2.4 1.7-2.4 6.7 0 8.4 4 2.9 8.7.7 8.7-4.2s-4.7-7.1-8.7-4.2zm6.5 2.3c.9 1.1 1 2 .2 3.2-1.5 2.4-4.4 2.7-5.9.7-2.8-3.8 2.7-7.5 5.7-3.9z"/><path d="M14.5 21.9c-.7 1.2 1.2 2.4 2.5 1.6 1.1-.7.4-2.5-1-2.5-.5 0-1.1.4-1.5.9z"/>
-                    </svg>
-                </div>
-            </li>
-        </ul>
-    </nav>
-
-    <button id="arrow-right" class="arrow">
-    <span class="chevron"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path
-            d="M319.1 290.5c20.2-20.2 19.9-53.2-.6-73.7s-53.5-20.8-73.7-.6l-190 190c-20.2 20.2-19.9 53.2.6 73.7s53.5 20.8 73.7.6l190-190z"/><path
-            d="M319.1 217c20.2 20.2 19.9 53.2-.6 73.7s-53.5 20.8-73.7.6l-190-190c-20.1-20.2-19.8-53.2.7-73.7S109 6.8 129.1 27l190 190z"/></svg></span>
-        <span class="chevron delayed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path
-                d="M319.1 290.5c20.2-20.2 19.9-53.2-.6-73.7s-53.5-20.8-73.7-.6l-190 190c-20.2 20.2-19.9 53.2.6 73.7s53.5 20.8 73.7.6l190-190z"/><path
-                d="M319.1 217c20.2 20.2 19.9 53.2-.6 73.7s-53.5 20.8-73.7.6l-190-190c-20.1-20.2-19.8-53.2.7-73.7S109 6.8 129.1 27l190 190z"/></svg></span>
-    </button>
-    <button id="arrow-left" class="arrow">
-    <span class="chevron"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path
-            d="M319.1 290.5c20.2-20.2 19.9-53.2-.6-73.7s-53.5-20.8-73.7-.6l-190 190c-20.2 20.2-19.9 53.2.6 73.7s53.5 20.8 73.7.6l190-190z"/><path
-            d="M319.1 217c20.2 20.2 19.9 53.2-.6 73.7s-53.5 20.8-73.7.6l-190-190c-20.1-20.2-19.8-53.2.7-73.7S109 6.8 129.1 27l190 190z"/></svg></span>
-        <span class="chevron delayed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path
-                d="M319.1 290.5c20.2-20.2 19.9-53.2-.6-73.7s-53.5-20.8-73.7-.6l-190 190c-20.2 20.2-19.9 53.2.6 73.7s53.5 20.8 73.7.6l190-190z"/><path
-                d="M319.1 217c20.2 20.2 19.9 53.2-.6 73.7s-53.5 20.8-73.7.6l-190-190c-20.1-20.2-19.8-53.2.7-73.7S109 6.8 129.1 27l190 190z"/></svg></span>
-    </button>
 </div>
 
 <div id="lightbox">
@@ -923,240 +836,9 @@
         </svg>
     </button>
 </div>
-<script>
-    (function () {
-        const container = document.getElementById('container');
-        const navbar = document.getElementById('navbar');
-        const left = document.getElementById('arrow-left');
-        const right = document.getElementById('arrow-right');
-        const count = navbar.querySelectorAll('li').length;
-        let current_tab = -1;
-        
-        function pseudoViewportWidth() {
-            return Math.min(window.innerWidth, window.innerHeight);
-        }
-        left.onclick = function () {
-            container.scrollLeft = Math.max(0, current_tab - 1) * pseudoViewportWidth();
-        };
-        right.onclick = function () {
-            container.scrollLeft = Math.min(count - 1, current_tab + 1) * pseudoViewportWidth();
-        };
-        Array.prototype.forEach.call(navbar.querySelectorAll('li'), function(item, index) {
-            item.onclick = function () {
-                container.scrollLeft = index * pseudoViewportWidth();
-            };
-        });
-        (container.onscroll = function () {
-            Array.prototype.forEach.call(navbar.querySelectorAll('li'), function(item, index) {
-                if (Math.abs(index * pseudoViewportWidth() - container.scrollLeft) < pseudoViewportWidth() / 2) {
-                    item.classList.add('nav-current');
-                    if (current_tab != index) {
-                        doAnimate(index);
-                    }
-                    current_tab = index;
-                    left.style.visibility = (index == 0) ? 'hidden' : '';
-                    right.style.visibility = (index == count - 1) ? 'hidden' : '';
-                } else {
-                    item.classList.remove('nav-current');
-                }
-            });
-        })();
-        function doAnimate(index) {
-            const section = container.querySelectorAll('section').item(index);
-            Array.prototype.forEach.call(section.querySelectorAll('.animate'), function(item, index) {
-                item.style.animationDelay = (index * .2).toString() + 's';
-                item.classList.add('animated');
-                // item.classList.remove('animate');
-            });
-        }
-    })();
-</script>
 
 <script src="hammer.min.js"></script>
 <script>
-    (function () {
-        const list = document.getElementById('photo-list');
-        const lightbox = document.getElementById('lightbox');
-        const close = document.getElementById('lightbox-close');
-        const view = document.getElementById('photo-view');
-        const index_view = document.getElementById('photo-index');
-        const loading = document.getElementById('loading');
-        const photo_count = list.querySelectorAll('li').length;
-        let current_photo = 0;
-        Array.prototype.forEach.call(list.querySelectorAll('li'), function(item, index) {
-            item.onclick = function () {
-                const agent = navigator.userAgent.toLowerCase();
-                if ((navigator.appName == 'Netscape' && agent.indexOf('trident') != -1) || (agent.indexOf("msie") != -1)) {
-                    // don't open lightbox in IE
-                    window.open(item.getAttribute('data-hr'), '_blank');
-                }else{
-                    current_photo = index;
-                    updatePhoto();
-                }
-            };
-        });
-        view.onload = function () {
-            ratio_y = this.naturalWidth / this.naturalHeight * window.innerHeight / window.innerWidth;
-            loading.style.visibility = 'hidden';
-            view.style.visibility = 'inherit';
-        };
-        close.onclick = function () {
-            history.back();
-        };
-        window.onpopstate = function (ev) {
-            if (!ev.state) {
-                closeLightbox();
-            } else {
-                current_photo = ev.state;
-                updatePhoto();
-            }
-        };
-
-        const mc = new Hammer.Manager(lightbox);
-        const pan = new Hammer.Pan();
-        const pinch = new Hammer.Pinch();
-
-        let ratio_y = 1;
-        let base_x = 0;
-        let base_y = 0;
-        let base_scale = 1;
-        let offset_x = 0;
-        let offset_y = 0;
-        let consume_pan = 0;
-        let tx = 0;
-        let ty = 0;
-        let scale = 1;
-        let swipe_threshold = window.innerWidth / 2;
-
-        function resetTransform() {
-            base_x = 0;
-            base_y = 0;
-            base_scale = 1;
-            tx = 0;
-            ty = 0;
-            view.style.transform = '';
-        }
-
-        function updatePhoto() {
-            index_view.textContent = (current_photo + 1) + '/' + photo_count;
-            const item = list.querySelectorAll('li').item(current_photo);
-            const itemsrc = item.getAttribute('data-hr');
-            if (view.src != itemsrc) {
-                loading.style.visibility = 'inherit';
-                view.style.visibility = 'hidden';
-                view.src = itemsrc;
-                resetTransform();
-            }
-            if (history.state && history.state != current_photo) {
-                history.replaceState(current_photo, document.title);
-            } else {
-                openLightbox();
-                history.pushState(current_photo, document.title);
-            }
-        }
-
-        function openLightbox() {
-            lightbox.style.visibility = 'inherit';
-        }
-
-        function closeLightbox() {
-            lightbox.style.visibility = 'hidden';
-            view.src = null;
-            resetTransform();
-        }
-
-        function swipeOffset() {
-            const minscale = Math.max(0, base_scale - 1);
-            if (tx > window.innerWidth * minscale / 2) {
-                return tx - window.innerWidth * minscale / 2;
-            }
-            if (tx < -window.innerWidth * minscale / 2) {
-                return tx + window.innerWidth * minscale / 2;
-            }
-            return 0;
-        }
-
-        function verticalOffset() {
-            const minscale = Math.max(0, base_scale / ratio_y - 1);
-            if (ty > window.innerHeight * minscale / 2) {
-                return ty - window.innerHeight * minscale / 2;
-            }
-            if (ty < -window.innerHeight * minscale / 2) {
-                return ty + window.innerHeight * minscale / 2;
-            }
-            return 0;
-        }
-
-        pan.recognizeWith(pinch);
-        mc.add([pan, pinch]);
-
-        mc.on("pan", function (ev) {
-            if (consume_pan > 0) {
-                consume_pan--;
-                return;
-            }
-            tx = base_x + ev.deltaX - offset_x;
-            ty = base_y + ev.deltaY - offset_y;
-            view.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + base_scale + ')';
-            const swipe_offset = Math.abs(swipeOffset());
-            view.style.opacity = Math.max(Math.min(1, 1 - swipe_offset / swipe_threshold), .25).toString();
-        });
-        mc.on("panstart", function (ev) {
-            swipe_threshold = window.innerWidth / 4;
-            offset_x = ev.deltaX;
-            offset_y = ev.deltaY;
-        });
-        mc.on("panend", function (ev) {
-            view.style.opacity = '1';
-            const swipe_offset = swipeOffset();
-            if (swipe_offset > swipe_threshold) {
-                current_photo--;
-                if (current_photo < 0) {
-                    current_photo = photo_count - 1;
-                }
-                updatePhoto();
-                return;
-            } else if (swipe_offset < -swipe_threshold) {
-                current_photo++;
-                if (current_photo >= photo_count) {
-                    current_photo = 0;
-                }
-                updatePhoto();
-                return;
-            }
-            if (base_scale < 1) {
-                base_scale = 1;
-            }
-            if (base_scale > 10) {
-                tx *= 10 / base_scale;
-                ty *= 10 / base_scale;
-                base_scale = 10;
-            }
-            tx -= swipeOffset();
-            ty -= verticalOffset();
-            base_x = tx;
-            base_y = ty;
-            view.style.transform = 'translate(' + base_x + 'px,' + base_y + 'px) scale(' + base_scale + ')';
-        });
-        mc.on("pinch", function (ev) {
-            tx = base_x * ev.scale + ev.center.x - offset_x;
-            ty = base_y * ev.scale + ev.center.y - offset_y;
-            scale = base_scale * ev.scale;
-            view.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + scale + ')';
-        });
-        mc.on("pinchstart", function (ev) {
-            base_x = tx;
-            base_y = ty;
-            offset_x = ev.center.x;
-            offset_y = ev.center.y;
-        });
-        mc.on("pinchend", function (ev) {
-            base_scale = scale;
-            base_x = tx;
-            base_y = ty;
-            consume_pan = 1;
-        });
-    })();
     
     
     let fyi = document.getElementsByClassName('fyi');
