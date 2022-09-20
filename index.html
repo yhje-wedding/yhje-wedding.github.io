@@ -804,17 +804,17 @@
                         <div class="box_bank">
                             <span class="txt_name">혼주(부) 정윤용</span>
                             <span class="txt_bank">신한 <span class="num_bank">000000000</span></span>
-                            <a href="#none" class="link_copy">복사하기</a>
+                            <a href="javascript:bank_copy(0);" class="link_copy">복사하기</a>
                         </div>
                         <div class="box_bank">
                             <span class="txt_name">혼주(모) 김윤숙</span>
                             <span class="txt_bank">신한 <span class="num_bank">000000000</span></span>
-                            <a href="#none" class="link_copy">복사하기</a>
+                            <a href="javascript:bank_copy(1);" class="link_copy">복사하기</a>
                         </div>
                         <div class="box_bank">
                             <span class="txt_name">정연호</span>
                             <span class="txt_bank">신한 <span class="num_bank">000000000</span></span>
-                            <a href="#none" class="link_copy">복사하기</a>
+                            <a href="javascript:bank_copy(2);" class="link_copy">복사하기</a>
                         </div>
                     </li>
                     <li class="">
@@ -822,17 +822,17 @@
                         <div class="box_bank">
                             <span class="txt_name">혼주(부) 최남식</span>
                             <span class="txt_bank">신한 <span class="num_bank">000000000</span></span>
-                            <a href="#none" class="link_copy">복사하기</a>
+                            <a href="javascript:bank_copy(3);" class="link_copy">복사하기</a>
                         </div>
                         <div class="box_bank">
                             <span class="txt_name">혼주(모) 이연숙</span>
                             <span class="txt_bank">신한 <span class="num_bank">000000000</span></span>
-                            <a href="#none" class="link_copy">복사하기</a>
+                            <a href="javascript:bank_copy(4);" class="link_copy">복사하기</a>
                         </div>
                         <div class="box_bank">
                             <span class="txt_name">최지은</span>
                             <span class="txt_bank">신한 <span class="num_bank">000000000</span></span>
-                            <a href="#none" class="link_copy">복사하기</a>
+                            <a href="javascript:bank_copy(5);" class="link_copy">복사하기</a>
                         </div>
                     </li>
                 </ul>
@@ -1068,14 +1068,22 @@
             base_y = ty;
             consume_pan = 1;
         });
-        
-        const link = document.getElementsByClassName('link_bank');
-
     })();
     
     function bank_close(n) {
         let li = document.getElementsByClassName('link_bank')[n].parentElement;
         li.classList.toggle("on");
+    }
+    
+    function bank_copy(n) {
+        let text = document.getElementsByClassName('link_copy')[n].parentElement.getElementsByClassName('num_bank')[0].innerHTML;
+        const clip = document.getElementById('clip_target');
+        clip.value = text;
+        input.focus();
+        input.select();
+        
+        document.execCommand('copy');
+        alert('계좌번호가 복사 되었습니다.: )');
     }
     
     let fyi = document.getElementsByClassName('fyi');
