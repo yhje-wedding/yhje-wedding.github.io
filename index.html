@@ -5,6 +5,7 @@
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0">
     <meta property="og:image" content="intro.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&amp;display=block" rel="stylesheet">
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <style type="text/css">
         @font-face {
             font-family: 'customfont';
@@ -1114,6 +1115,31 @@
         
         document.execCommand('copy');
         alert('계좌번호가 복사 되었습니다.: )');
+    }
+    
+    Kakao.init('bd5b5917a43199eca0491703ca95c639');
+    // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+    function shareKakaotalk(){
+        Kakao.Share.sendDefault({
+            objectType: 'feed',
+            content: {
+                title: '정연호 ♡ 최지은 결혼합니다.',
+                description: '2022년 11월 19일(일) 오후 12시\n센텀사이언스파크 웨딩홀',
+                imageUrl: 'https://yhje-wedding.github.io/photo/main_photo.jpg',
+                link: {
+                    mobileWebUrl: 'https://yhje-wedding.github.io',
+                    webUrl: 'https://yhje-wedding.github.io'
+                }
+            },
+            buttons: [{
+                    title: '청첩장 보러가기',
+                    link: {
+                        mobileWebUrl: 'https://yhje-wedding.github.io',
+                        webUrl: 'https://yhje-wedding.github.io'
+                    }
+                }
+            ]
+        });
     }
     
     let fyi = document.getElementsByClassName('fyi');
