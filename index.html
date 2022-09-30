@@ -438,25 +438,23 @@
             };
         });
         
-        const images = [
-            "photo/1.jpg",
-            "photo/2.jpg",
-            "photo/3.jpg",
-            "photo/4.jpg",
-            "photo/5.jpg",
-            "photo/6.jpg",
-        ];
-        const preload = (imageArray, index) => {
-            index = index || 0;
-            if (imageArray && imageArray.length > index) {
-                const img = new Image();
-                img.onload = () => {
-                    preload(imageArray, index + 1);
-                }
-                img.src = imageArray[index];
-            }
+        let images = [];
+
+        function preload() {
+          for(let i = 0; i < preload.arguments.lenght; i++) {
+            images[i] = new Image();
+            images[i].src = preload.arguments.src;
+          }
         }
-        preload(images);
+        preload(
+            "./photo/1.jpg",
+            "./photo/2.jpg",
+            "./photo/3.jpg",
+            "./photo/4.jpg",
+            "./photo/5.jpg",
+            "./photo/6.jpg"
+        );
+        
         view.onload = function () {
             ratio_y = this.naturalWidth / this.naturalHeight * window.innerHeight / window.innerWidth;
             loading.style.visibility = 'hidden';
