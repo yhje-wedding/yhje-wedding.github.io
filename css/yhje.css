@@ -1,0 +1,122 @@
+        @font-face {font-family: 'customfont';src: url('/font/Cafe24Oneprettynight.ttf');}
+        @keyframes float {
+            from {
+                transform: translateY(50px);
+                opacity: .2;
+            }
+            to {
+                transform: none;
+                opacity: 1;
+            }
+        }        
+        @keyframes blink {
+            0% {
+                fill: #000;
+            }
+            25%, 50%{
+                fill: #fff;
+            }
+            75%, 100% {
+                fill: #000;
+            }
+        }
+        
+        html, body {width: 100%;height: 100%;margin: 0;padding: 0;overflow: auto;font-family: "customfont";}
+        body {background: #FFFFFF;content:url(photo/1.jpg)url(photo/2.jpg)url(photo/3.jpg)url(photo/4.jpg)url(photo/5.jpg)url(photo/6.jpg);}        
+        ol, ul {list-style: none;}        
+        a:link, a:visited, a:hover, a:active{color:#333}
+        button, .clickable {list-style:none;cursor: pointer;width: 50%;height: 50%;float: left;}
+        button:active {padding: 0;}
+        
+        #pseudo-viewport {width: 100%;}
+        #container {border: 1px hidden rgba(0, 0, 0, 0);}
+        
+        #intro {color: #454545;background-size: cover;background-position: right;}
+        #intro .overlay {background: #ffffff;padding: 0 20px;}        
+        #intro .logo {margin: 25px 0 0;}
+        #intro .title {margin: 15px 15px 0;}        
+        #intro .foot {margin: 20px 0;}        
+        #intro .main_name {margin: 0;}
+        #intro h3, #intro h4 {margin: 10px 0;text-align: center;font-size: 18px;color: #4D1F03;}
+        #intro .text {color: #454545;letter-spacing: 0.05em;line-height: 1.7em;border-left: 3px solid;padding-left: 10px;margin: auto 0 10px 0;text-shadow: black 0.01em 0.01em;}
+        .overlay {left: 0;padding: 0 20px;right: 0;top: 0;}
+        
+        #contact {background: #ebd3bb;background-image: url(/img/patron.png);}
+        .sentence {color: #333333;text-align: center;letter-spacing: 0em;line-height: 1.7em;width: 100%;padding: 15px 0;font-size: 18px;}
+        
+        #video div {text-align: center;position: relative;}
+        #video .player_btn {position: absolute;top: 50%;left: 50%;margin: 0;padding: 0;margin-top: -2.5em;margin-left: -1.75em;width: 3.5em;height: 3.5em;}
+            
+        h1.divider {align-items: center;color: #454545;display: flex;}
+        h1.divider span {content: "";flex: 1 1 auto;border-top: 1px solid;margin: 0 25px;}
+        h1 {text-align: center;font-size: 25px;font-weight: normal;}
+        
+        .main_txt .divider {align-items: center;color: #454545;display: flex;}
+        .main_txt .divider span {content: "";flex: 1 1 auto;border-top: 1px solid;margin: 0 25px;}
+        .main_txt  {text-align: center;font-size: 30px;font-weight: bolder;margin: 10px 0 15px;}
+        
+        #album {display: flex;flex-flow: column;backgroud: #ffffff;}
+        #album #photo-list {padding: 0;}
+        #album .photo {box-sizing: border-box;padding: 10px;width: 100%;}
+        
+        #lightbox {background: rgba(0, 0, 0, 0.9);display: flex;left: 0;visibility: hidden;top: 0;width: 100%;z-index: 2;height: 100%;position: absolute;}
+        #lightbox-close {background: none;border: 0;height: 60px;margin: 10px;opacity: .59;outline: none;top: 0;right: 0;width: 60px;position: absolute;}
+        #lightbox-close svg {fill: white;stroke: black;}
+        #photo-view {margin: 0 auto;object-fit: contain;transform-origin: center;width: 100%;}
+        #loading {animation: spin 1s ease-in-out infinite;border: 3px solid rgba(255, 255, 255, .3);border-radius: 50%;border-top-color: #fff;height: 50px;left: 50%;position: absolute;top: 50%;width: 50px;z-index: -1;}
+        
+        #directions {color: rgba(255, 255, 255, 0.9);overflow-y: scroll;scrollbar-width: thin;background: #ebd3bb;background-image: url(img/patron.png);}
+        #map {height: 250px;margin: 5px 10px;}
+        #directions .text {font-size: 15px;text-align: center;margin: 15px 10px 8px;color: #000000;}
+        #directions .text .s_title{font-weight: bolder;}
+        #directions .text a {color: #000000;font-size: 15px;}
+        #directions .address {font-size: 20px;text-align: center;}
+        #directions .address > * {display: inline-block;}
+        #directions .appslink {display: flex;justify-content: center;}        
+        #directions .applink {align-content: center;border: 1px dashed;color: #3b6978;display: flex;height: 20px;justify-items: flex-start;margin: 0 10px;padding: 10px;text-decoration: none;width: 45%;float: left;}
+        #directions .applink .icon {border-radius: 8px;height: 100%;object-fit: contain;}
+        #directions .applink .text {font-size: 10px;font-weight: bold;margin: auto;}
+        
+        #call_info {background: #f8f8f8;padding-bottom:15px;background-image: url(/img/patron.png);}
+        
+        .call_list {background: #f8f8f8;padding: 5px 0;text-align: center;width: 100%;color: #121329;background-image: url(/img/patron.png);}        
+        .call_list dl {width: 90%;padding: 10px 0;margin: 30px 10px 20px;}        
+        .call_list dl dt {float: left;width: 55%;padding: 0px;font-size: 20px;text-align: right;}        
+        .call_list dl dd {width: 10%;float: left;}        
+        .call_list .list_wrap {position: relative;}
+        .call_list .list_wrap:after {content: "";display: block;clear: both;}
+        .call .list_wrap.on .list_con {display: block;}
+        .call_list .list_wrap.on .info_detail {background-position: center -30px;}
+        .call_list .list_wrap .call_sms {float: left;width: 50%;text-align: center;list-style: none;}
+        .call_list .list_wrap h3 {font-size: 15px;height: 20px;}
+        .call .list_wrap .list_con {display: none;margin: 15px 0 10%;padding-bottom: 10px;height: 60px;}
+        .call_list .list_wrap .btn_wrap {margin-top: 10px;}
+        .call_list .list_wrap .btn_wrap a {margin: 0 10px;}
+        .call_list .list_wrap span:nth-child(1) {font-size: 14px;margin-right: 5px;}        
+        .btn_wrap {background: #f8f8f8;height: 50px;background-image: url(/img/patron.png);}        
+        .btn_wrap .account_num {float: left;width: 50%;text-align: center;}        
+        .btn_wrap .an_btn {width: 100%;line-height: 30px;color: #000;font-size: 14px;}
+        
+        .info_bank {margin: 0 8.33vw;}
+        .list_bank {list-style: none;padding: 0;}        
+        .info_bank .link_bank{display:block;position:relative;padding:2.77vw 4.44vw;font-size:3.88vw;line-height:5.83vw;background-color:rgba(191,179,168,0.3);border-radius:4px;color: #333;text-decoration: none;}
+        .info_bank .box_bank{display:none;position:relative;padding:3.61vw 4.44vw;background-color:#fff}
+        .link_bank .ico_arrow{position:absolute;right:4.44vw;top:4.72vw;width:0;height:0;border-top:6px solid rgba(0,0,0,0.2);/* 화살표 */border-left:5px solid transparent;border-right:5px solid transparent;}
+        .info_bank li.on .box_bank{display:block}
+        .info_bank li.on .ico_arrow{-webkit-transform:rotate(180deg);transform:rotate(180deg)}
+        .info_bank .txt_name{display:block;font-size:3.61vw;line-height:6.66vw}
+        .info_bank .txt_bank{font-size:3.61vw}
+        .info_bank .link_copy{display:inline-block;height:6.66vw;margin:-1.38vw 0 0 2.77vw;padding:0 12px;font-size:3.33vw;line-height:6.66vw;color:#fff;border:none;background-color:#BFD9D6;border-radius:3px;vertical-align:top;text-decoration: none;}
+        .list_bank li{position:relative}
+        .list_bank li + li{padding-top:1.66vw}
+        .list_bank li + li:before{position:absolute;left:0;top:0;right:0;height:6px;background-color:#f4f4f4;content:''}
+        .wrap_footer{padding:15px 0;background-color:#E8E5E3;border-top:1px solid rgba(0,0,0,0.01)}
+        .info_square{display:block;padding-top:3.89vw;color:#767270;font-size:3.05vw;line-height:5.55vw;text-align:center}
+        .info_square .txt_name{display:inline-block;line-height:5.55vw;vertical-align:top}
+        .list_share{font-size:0;padding:0;}
+        .list_share li + li{margin-top:2.22vw}
+        .list_share li{width:41.05vw;margin:0 auto}
+        .list_share .link_share{display:inline-block;font-size:0;vertical-align:top}
+        .list_share .link_share svg{display:inline-block;width:4.8vw;margin-top:0.55vw;vertical-align:top}
+        .list_share .txt_share{display:inline-block;padding-left:0.83vw;font-size:3.33vw;line-height:5.83vw;vertical-align:top}
+        .fyi {margin: 4vw 8.33vw 0;border: 1px solid;padding: 5px;text-align: center;}
