@@ -274,9 +274,6 @@
         document.execCommand('copy');
         alert('청첩장 url이 복사 되었습니다.');
     }
-    
-    let fyi = document.getElementsByClassName('fyi');
-    fyi[0].style.marginLeft = fyi[0].clinetWidth/2;
 
     let map;
     let directionsService;
