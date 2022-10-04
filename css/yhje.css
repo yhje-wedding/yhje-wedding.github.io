@@ -1,4 +1,4 @@
-        @font-face {font-family: 'customfont';src: url('/font/Cafe24Oneprettynight.ttf');}
+        @font-face {font-family: 'customfont';src: url('../font/Cafe24Oneprettynight.ttf');}
         @keyframes float {
             from {
                 transform: translateY(50px);
@@ -22,7 +22,7 @@
         }
         
         html, body {width: 100%;height: 100%;margin: 0;padding: 0;overflow: auto;font-family: "customfont";}
-        body {background: #FFFFFF;content:url(photo/1.jpg)url(photo/2.jpg)url(photo/3.jpg)url(photo/4.jpg)url(photo/5.jpg)url(photo/6.jpg);}        
+        body {background: #FFFFFF;content:url(../photo/1.jpg)url(../photo/2.jpg)url(../photo/3.jpg)url(../photo/4.jpg)url(../photo/5.jpg)url(../photo/6.jpg);}        
         ol, ul {list-style: none;}        
         a:link, a:visited, a:hover, a:active{color:#333}
         button, .clickable {list-style:none;cursor: pointer;width: 50%;height: 50%;float: left;}
@@ -41,7 +41,7 @@
         #intro .text {color: #454545;letter-spacing: 0.05em;line-height: 1.7em;border-left: 3px solid;padding-left: 10px;margin: auto 0 10px 0;text-shadow: black 0.01em 0.01em;}
         .overlay {left: 0;padding: 0 20px;right: 0;top: 0;}
         
-        #contact {background: #ebd3bb;background-image: url(/img/patron.png);}
+        #contact {background: #ebd3bb;background-image: url(../img/patron.png);}
         .sentence {color: #333333;text-align: center;letter-spacing: 0em;line-height: 1.7em;width: 100%;padding: 15px 0;font-size: 18px;}
         
         #video div {text-align: center;position: relative;}
