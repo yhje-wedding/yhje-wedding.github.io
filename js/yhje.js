@@ -1,4 +1,4 @@
-(function () {
+ window.onload = function () {
         const list = document.getElementById('photo-list');
         const lightbox = document.getElementById('lightbox');
         const close = document.getElementById('lightbox-close');
@@ -221,7 +221,7 @@
             base_y = ty;
             consume_pan = 1;
         });
-    })();
+    }
     
     function bank_close(n) {
         let li = document.getElementsByClassName('link_bank')[n].parentElement;
