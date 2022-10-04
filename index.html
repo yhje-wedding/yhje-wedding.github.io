@@ -12,7 +12,8 @@
     <meta property="og:description" content="2022년 11월 19일(토) 오후 12시 센텀사이언스파크 웨딩홀">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&amp;display=block" rel="stylesheet">
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-    <style type="text/css">
+    <link rel="stylesheet" href="css/yhje.css">
+    /*<style type="text/css">
         @font-face {font-family: 'customfont';src: url('/font/Cafe24Oneprettynight.ttf');}
         @keyframes float {
             from {
@@ -135,7 +136,7 @@
         .list_share .link_share svg{display:inline-block;width:4.8vw;margin-top:0.55vw;vertical-align:top}
         .list_share .txt_share{display:inline-block;padding-left:0.83vw;font-size:3.33vw;line-height:5.83vw;vertical-align:top}
         .fyi {margin: 4vw 8.33vw 0;border: 1px solid;padding: 5px;text-align: center;}
-    </style>
+    </style>*/
 </head>
 <body>
 <div id="pseudo-viewport">
@@ -426,7 +427,7 @@
         
         Array.prototype.forEach.call(list.querySelectorAll('li'), function(item, index) {
             item.onclick = function () {
-                console.log("사진 클릭");
+                //console.log("사진 클릭");
                 const agent = navigator.userAgent.toLowerCase();
                 if ((navigator.appName == 'Netscape' && agent.indexOf('trident') != -1) || (agent.indexOf("msie") != -1)) {
                     // don't open lightbox in IE
@@ -504,16 +505,16 @@
             index_view.textContent = (current_photo + 1) + '/' + photo_count;
             const item = list.querySelectorAll('li').item(current_photo);
             const itemsrc = item.getAttribute('data-hr');
-            console.log("view.src : "+view.src);
-            console.log("itemsrc : "+itemsrc);
+            //console.log("view.src : "+view.src);
+            //console.log("itemsrc : "+itemsrc);
             if (view.src != itemsrc) {
                 loading.style.visibility = 'inherit';
                 view.style.visibility = 'hidden';
                 view.src = itemsrc;
                 resetTransform();
             }
-            console.log("history.state:"+history.state);            
-            console.log("current_photo:"+current_photo);
+            //console.log("history.state:"+history.state);            
+            //console.log("current_photo:"+current_photo);
             if (history.state && history.state != current_photo) {
                 history.replaceState(current_photo, document.title);
             } else {
