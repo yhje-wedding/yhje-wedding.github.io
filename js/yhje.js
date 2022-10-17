@@ -288,11 +288,11 @@
         directionsService = new google.maps.DirectionsService();
         directionsRenderer = new google.maps.DirectionsRenderer();
         directionsRenderer.setMap(map);
-        /*const raum_marker = new google.maps.Marker({
+        const raum_marker = new google.maps.Marker({
             position: new google.maps.LatLng(35.1739629, 129.1262474),
-            icon: {anchor: new google.maps.Point(24, 60), scaledSize: new google.maps.Size(48, 60)},
+            //icon: {anchor: new google.maps.Point(24, 60), scaledSize: new google.maps.Size(48, 60)},
             map: map
-        });*/
+        });
         const bus_marker = new google.maps.Marker({
             position: new google.maps.LatLng(35.169945, 129.132088),
             icon: {url: '/bus.png', anchor: new google.maps.Point(24, 60), scaledSize: new google.maps.Size(48, 60)},
