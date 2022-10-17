@@ -284,6 +284,7 @@
             center: {lat: 35.1739629, lng: 129.1262474},
             zoom: 14,
             controlSize: 24,
+            mapTypeControl : false
         });
         directionsService = new google.maps.DirectionsService();
         directionsRenderer = new google.maps.DirectionsRenderer();
